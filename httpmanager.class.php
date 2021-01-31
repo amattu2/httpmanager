@@ -1,6 +1,6 @@
 <?php
 /*
-	Produced 2020
+	Produced 2020-2021
 	By https://amattu.com/links/github
 	Copy Alec M.
 	License GNU Affero General Public License v3.0
@@ -32,17 +32,43 @@ class HTTPManager {
 	 *
 	 * @param string $message
 	 * @param boolean $end
-	 * @throws None
+	 * @throws TypeError
 	 * @author Alec M. <https://amattu.com>
 	 * @date 2020-03-18T19:46:53-040
 	 */
 	public static function displayError(string $message, $end = true) : void {
 		// Variables
-		$template = "{error_message}";
+		$template = file_get_contents(dirname(__FILE__, 1) ."/assets/error-template.html");
 
 		// Checks
 		if ($message) {
-			echo str_replace("{error_message}", $message, $template);
+			echo str_replace("404 - That page was not found", $message, $template);
+		}
+		if ($end) {
+			die();
+		}
+	}
+
+	/**
+	 * Display HTML Message Template
+	 *
+	 * @param string $title
+	 * @param string $message
+	 * @param boolean $end
+	 * @throws TypeError
+	 * @author Alec M. <https://amattu.com>
+	 * @date 2021-01-31T08:18:31-050
+	 */
+	public static function displayMessage(string $title, string $message, $end = true) : void {
+		// Variables
+		$template = file_get_contents(dirname(__FILE__, 1) ."/assets/http-template.html");
+
+		// Checks
+		if ($title) {
+			echo str_replace("{{title}}", $title, $template);
+		}
+		if ($message) {
+			echo str_replace("{{message}}", $message, $template);
 		}
 		if ($end) {
 			die();
@@ -54,7 +80,7 @@ class HTTPManager {
 	 *
 	 * @param array $options (Status => HTTP Status Code, JSON => 0/1, Encode => 0/1)
 	 * @param boolean $end
-	 * @throws TypeError
+	 * @throws None
 	 * @author Alec M. <https://amattu.com>
 	 * @date 2020-05-03T09:45:27-040
 	 */
