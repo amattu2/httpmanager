@@ -13,8 +13,8 @@ Error Message Display
  * @author Alec M. <https://amattu.com>
  * @date 2020-03-18T19:46:53-040
  */
-public static function displayError(string $message, $end = true) : void 
-``` 
+public static function displayError(string $message, $end = true) : void
+```
 You can replace $template with a HTML template, etc. Default is just raw string output
 
 `string $message`
@@ -23,6 +23,30 @@ Error message
 `bool $end`
 Exit script after running
 
+Standard Message Display
+```PHP
+/**
+ * Display HTML Message Template
+ *
+ * @param string $title
+ * @param string $message
+ * @param boolean $end
+ * @throws TypeError
+ * @author Alec M. <https://amattu.com>
+ * @date 2021-01-31T08:18:31-050
+ */
+public static function displayMessage(string $title, string $message, $end = true) : void
+```
+You can replace $template with a HTML template, etc. Default is just raw string output
+
+`string $title`
+Message title
+
+`string $message`
+Message contents
+
+`bool $end`
+Exit script after running
 
 ```PHP
 /**
@@ -37,11 +61,11 @@ Exit script after running
 public static function returnData(array $options, $end = true) : void
 ```
 
-`status` 
+`status`
 HTTP status code (Default is left to the websever)
 
 `JSON`
-Content type JSON 
+Content type JSON
 
 `Encode`
 Encode `Data` attribute
@@ -62,7 +86,7 @@ Examples
  */
 public static function deleteCookies(array $names) : int
 ```
-Delete an array of cookies by their name, return value is the number of successes 
+Delete an array of cookies by their name, return value is the number of successes
 
 # Notes
 N/A
